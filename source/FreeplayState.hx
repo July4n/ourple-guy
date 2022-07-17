@@ -238,6 +238,12 @@ class FreeplayState extends MusicBeatState
 		//bg.color = songs[curSelected].color;
 		//intendedColor = bg.color;
 
+                #if android
+		addVirtualPad(LEFT_FULL, A_B_C_X_Y_Z);
+		virtualPad.y = -26;
+		#end
+
+
 		if(lastDifficultyName == '')
 		{
 			lastDifficultyName = CoolUtil.defaultDifficulty;
