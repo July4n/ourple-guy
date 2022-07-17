@@ -431,7 +431,7 @@ class TitleState extends MusicBeatState
 
 		var pressedEnter:Bool = FlxG.keys.justPressed.ENTER || controls.ACCEPT;
 
-		#if mobile
+		#if android
 		for (touch in FlxG.touches.list)
 		{
 			if (touch.justPressed)
@@ -440,6 +440,7 @@ class TitleState extends MusicBeatState
 			}
 		}
 		#end
+
 
 		var gamepad:FlxGamepad = FlxG.gamepads.lastActive;
 
@@ -484,6 +485,13 @@ class TitleState extends MusicBeatState
 					closedState = true;
 				});
 				// FlxG.sound.play(Paths.music('titleShoot'), 0.7);
+			}
+
+                        #if (TITLE_SCREEN_EASTER_EGG && android)
+			else if (FlxG.android.justReleased.BACK)
+			{
+				FlxG.stage.window.textInputEnabled = true;
+				FlxG.stage.window.onTextInput.add(eastereggFunction);
 			}
 			#if TITLE_SCREEN_EASTER_EGG
 			else if (FlxG.keys.firstJustPressed() != FlxKey.NONE)
